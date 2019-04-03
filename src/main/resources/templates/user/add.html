@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css }" rel="stylesheet" >
+
+    <link href="/css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{/bar/bar::topbar}"></div>
+<div class="container-fluid ">
+<div class="row">
+<div th:replace="~{/bar/bar::left(activeurl='users')}"></div>
+
+<div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <form th:action="@{/user}" method="post">
+        <input type="hidden" name="_method" value="put" th:if="${user!=null}">
+        <input type="hidden" name="id" value="put" th:if="${user!=null}" th:value="${user.id}">
+        <div class="form-group" >
+            <h1>11111111</h1>
+            <label >姓名</label>
+            <input name="name" type="text" class="form-control" id="name" placeholder="姓名" th:value="${user!=null}?${user.name}">
+        </div>
+        <div class="form-group">
+            <label >学号</label>
+            <input name="no" type="text" class="form-control" id="no" placeholder="学号" th:value="${user!=null}?${user.no}">
+        </div>
+        <div class="form-group">
+            <label >密码</label>
+            <input name="password" type="password" class="form-control" id="password" placeholder="******" th:value="${user!=null}?${user.password}">
+        </div>
+        <div class="form-group">
+            <label >电子邮件</label>
+            <input name="email" type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com" th:value="${user!=null}?${user.email}">
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" th:src="@{/js/jquery-slim.min.js}" ></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js" th:src="@{/js/jquery-slim.min.js}"><\/script>')</script>
+<script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js}" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js" th:src="@{/webjars/feather-icons/4.10.0/dist/feather.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" th:src="@{/webjars/chart.js/2.7.3/dist/Chart.js}"></script>
+<script src="dashboard.js" th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

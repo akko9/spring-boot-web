@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>成功!</h1>
+<div th:text="${hello}">显示的文本 </div>
+<hr/>
+<h4 th:each="name:${name}" th:text="${name}"></h4>
+<hr/>
+<h4>
+    <span  th:each="name:${name}"> [[${name}]] </span>
+</h4>
+</body>
+</html>
