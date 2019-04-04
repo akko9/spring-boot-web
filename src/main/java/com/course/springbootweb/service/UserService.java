@@ -27,7 +27,7 @@ public class UserService  {
     添加
      */
     public void insert(User user){
-       userRepository.save(user);
+        userRepository.save(user);
     }
     /*
     通过id查找对象

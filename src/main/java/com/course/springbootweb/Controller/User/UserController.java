@@ -1,7 +1,6 @@
 package com.course.springbootweb.Controller.User;
 
 import com.course.springbootweb.Entity.User;
-import com.course.springbootweb.repository.UserRepository;
 import com.course.springbootweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 

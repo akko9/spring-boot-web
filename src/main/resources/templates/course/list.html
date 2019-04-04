@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css }" rel="stylesheet" >
-
     <link href="dashboard.css" th:href="@{css/dashboard.css}" rel="stylesheet">
 </head>
 <body>
@@ -16,9 +15,9 @@
 <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h1>---</h1>
 <h2>
-    <a class="btn btn-sm btn-success" th:href="@{/course}">添加</a>
+    <a class="btn btn-sm btn-success" th:href="@{/Course}">添加</a>
 </h2>
-<div class="table-responsive">
+<div class="table-responsive" id="datalist">
     <table class="table table-striped table-sm">
         <thead>
         <tr>
@@ -31,15 +30,15 @@
         </tr>
         </thead>
          <TBODY>
-         <tr th:each="course:${courses}">
-             <td th:text="${courseStat.index+1}"></td>
-             <td th:text="${course.name}"></td>
-             <td >[[${course.level}]]</td>
-             <td th:text="${course.tName}"></td>
-             <td th:text="${course.score}"></td>
+         <tr v-for="list in lists">
+             <td id="courseId">{{list.id}}</td>
+             <td >{{list.name}}</td>
+             <td >{{list.level}}</td>
+             <td >{{list.tName}}</td>
+             <td >{{list.score}}</td>
              <td>
-                 <a class="btn btn-sm btn-primary" th:href="@{/course/}+${course.id}">修改</a>
-                 <button th:attr="delete_url=@{/course/}+${course.id} "  type="submit" class="btn btn-sm btn-danger deleteBtn">删除</button>
+                 <a class="btn btn-sm btn-primary"  @click.prevent="toUpdate(list.id)">修改</a>
+                 <button  type="submit" class="btn btn-sm btn-danger " style="border-radius:0.2rem"  v-on:click.prevent="toDelete(list.id)" >删除</button>
              </td>
          </tr>
          </TBODY>
@@ -57,10 +56,52 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js" th:src="@{webjars/feather-icons/4.10.0/dist/feather.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" th:src="@{webjars/chart.js/2.7.3/dist/Chart.js}"></script>
 <script src="dashboard.js" th:src="@{js/dashboard.js}"></script>
+<script th:src="@{/webjars/vue/2.6.10/dist/vue.js}"></script>
+<script th:src="@{/webjars/vue-resource/1.3.4/dist/vue-resource.js}"></script>
+<script th:src="@{/webjars/axios/0.19.0-beta.1/dist/axios.js }"></script>
 <script>
     $(".deleteBtn").click(function () {
-        $("#deleteUserForm").attr("action",  $(this).attr("delete_url")).submit()
         return false;
+    })
+</script>
+<script>
+    $(function () {
+        var courseData={
+            url:'/listCourses',
+            lists:[],
+        }
+        var vue=new Vue({
+
+            el:'#datalist',
+            data: courseData,
+            mounted:function () {
+                this.$nextTick(function () {
+                    this.getList();
+                })
+            },
+            methods:{
+                getList:function () {
+                    var  url=courseData.url;
+                   this.$http.get(url).then(function (value) {
+                        if (value.data==null) {
+                            alert("获取失败")
+                        }else {
+                            this.lists=value.data
+                        }
+
+                    })
+                },
+                toUpdate:function (id) {
+                    console.log("成功")
+                    console.log(id)
+                    window.location.href="/course/"+id;
+                },
+                toDelete:function (id) {
+                    var url="/course/"+id;
+                    $("#deleteUserForm").attr("action",url).submit()
+                }
+            }
+        })
     })
 </script>
 </body>
