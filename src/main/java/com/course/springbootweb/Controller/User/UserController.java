@@ -28,6 +28,7 @@ public class UserController {
     }
     @PostMapping("/user")
     public String addUser(User user){
+        user.setIsadmin(1);
         System.out.println(user);
        userService.insert(user);
         return "redirect:/users";
@@ -41,8 +42,6 @@ public class UserController {
     }
     @PutMapping("/user")
     public String updateUser(User user){
-        User userInfo= userService.findById(user.getId());
-        user.setId(userInfo.getId());
         userService.update(user);
         return "redirect:/users";
     }

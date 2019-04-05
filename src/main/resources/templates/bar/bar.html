@@ -11,7 +11,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">退出</a>
+            <a class="nav-link" href="/user/signOut">退出</a>
         </li>
     </ul>
 </nav>
@@ -33,9 +33,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/students" th:class="${activeurl=='students'?'nav-link active':'nav-link'}">
                     <span data-feather="shopping-cart"></span>
-                    Products
+                    学生选课信息
                 </a>
             </li>
             <li class="nav-item">
@@ -68,7 +68,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
-                    Current month
+                     学生选课
                 </a>
             </li>
             <li class="nav-item">
@@ -92,5 +92,18 @@
         </ul>
     </div>
 </nav>
+<script  th:src="@{js/jquery-slim.min.js}" ></script>
+<script>window.jQuery || document.write('<script  th:src="@{js/jquery-slim.min.js}"><\/script>')</script>
+<script  th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js}" ></script>
+<script  th:src="@{webjars/feather-icons/4.10.0/dist/feather.js}"></script>
+<script  th:src="@{webjars/chart.js/2.7.3/dist/Chart.js}"></script>
+<script  th:src="@{js/dashboard.js}"></script>
+<script>
+    $(function () {
+        var msg=  $("#msg").val()
+        alert(msg)
+
+    })
+</script>
 </body>
 </html>

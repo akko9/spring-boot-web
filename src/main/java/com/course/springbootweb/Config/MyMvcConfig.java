@@ -1,5 +1,6 @@
 package com.course.springbootweb.Config;
 
+import com.course.springbootweb.component.AdminHandleIntercepter;
 import com.course.springbootweb.component.LoginHandleIntercepter;
 import com.course.springbootweb.component.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +30,9 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
            @Override
            public void addInterceptors(InterceptorRegistry registry) {
-               registry.addInterceptor(new LoginHandleIntercepter()).addPathPatterns("").
+               registry.addInterceptor(new LoginHandleIntercepter()).addPathPatterns("/**").
                        excludePathPatterns("/index.html","/","/user/login","/list.html");
+               registry.addInterceptor(new AdminHandleIntercepter()).addPathPatterns("/students","/users","/courses");
            }
            @Override
            public void addCorsMappings(CorsRegistry corsRegistry) {

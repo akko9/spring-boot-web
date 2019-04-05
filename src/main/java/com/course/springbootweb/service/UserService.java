@@ -48,4 +48,11 @@ public class UserService  {
     public void delete(User user){
         userRepository.delete(user);
     }
+    /*
+    跟据name获得id
+     */
+    public User findByName(String name){
+        User user=userRepository.findByName(name);
+        return user;
+    }
 }

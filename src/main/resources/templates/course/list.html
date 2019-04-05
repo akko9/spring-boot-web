@@ -30,15 +30,15 @@
         </tr>
         </thead>
          <TBODY>
-         <tr v-for="list in lists">
-             <td id="courseId">{{list.id}}</td>
+         <tr v-for="(list,index) in lists">
+             <td>{{index+1}}</td>
              <td >{{list.name}}</td>
              <td >{{list.level}}</td>
              <td >{{list.tName}}</td>
              <td >{{list.score}}</td>
              <td>
                  <a class="btn btn-sm btn-primary"  @click.prevent="toUpdate(list.id)">修改</a>
-                 <button  type="submit" class="btn btn-sm btn-danger "    v-on:click.prevent="toDelete(list.id)" >删除</button>
+                 <button  type="submit" class="btn btn-sm btn-danger "    @click.prevent="toDelete(list.id)" >删除</button>
              </td>
          </tr>
          </TBODY>
@@ -47,6 +47,7 @@
 </div>
     <form id="deleteUserForm"  method="post" >
         <input type="hidden" name="_method" value="delete" >
+        <input type="hidden" id="uid"  th:value="${session.uid}">
     </form>
 </div>
 </div>
@@ -60,18 +61,13 @@
 <script th:src="@{/webjars/vue-resource/1.3.4/dist/vue-resource.js}"></script>
 <script th:src="@{/webjars/axios/0.19.0-beta.1/dist/axios.js }"></script>
 <script>
-    $(".deleteBtn").click(function () {
-        return false;
-    })
-</script>
-<script>
     $(function () {
+        var uid=$("#uid").val()
         var courseData={
-            url:'/listCourses',
+            url:'/listCourses/'+uid,
             lists:[],
         }
         var vue=new Vue({
-
             el:'#datalist',
             data: courseData,
             mounted:function () {

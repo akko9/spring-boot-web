@@ -35,7 +35,6 @@
 </head>
 <body>
 <div th:insert="~{bar/bar::topbar}"></div>
-
 <div class="container-fluid">
   <div class="row">
     <div th:replace="~{bar/bar::left(activeurl='main.html')}"></div>
@@ -53,7 +52,7 @@
           </button>
         </div>
       </div>
-
+      <input type="hidden" id="msg"  th:value="${msg}">
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>
   </div>
@@ -64,5 +63,13 @@
 <script  th:src="@{webjars/feather-icons/4.10.0/dist/feather.js}"></script>
 <script  th:src="@{webjars/chart.js/2.7.3/dist/Chart.js}"></script>
 <script  th:src="@{js/dashboard.js}"></script>
+<script>
+  $(function () {
+    var msg=  $("#msg").val()
+    if (msg=="未有权限浏览!"){
+        alert(msg)
+    }
+  })
+</script>
 </body>
 </html>

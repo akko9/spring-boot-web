@@ -6,7 +6,6 @@ import com.course.springbootweb.Entity.Course;
 import com.course.springbootweb.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -15,10 +14,17 @@ public class CourseService  {
     @Autowired
     CourseRepository courseRepository;
     /*
-     查找所有
+    查询所有
      */
     public List<Course> findAll(){
         List<Course> list=courseRepository.findAll();
+        return list;
+    }
+    /*
+     根据level查找所有
+     */
+    public List<Course> findAllByNo(Integer level){
+        List<Course> list=courseRepository.findByLevel(level);
         return  list;
     }
     /*
