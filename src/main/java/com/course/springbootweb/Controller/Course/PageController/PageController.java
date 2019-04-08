@@ -28,4 +28,11 @@ public class PageController {
         model.addAttribute("course",course);
         return "course/add";
     }
+    /*
+    跳转选择界面
+     */
+    @GetMapping("/chooseList")
+    public String listChoose(){
+        return "/student/choose";
+    }
 }

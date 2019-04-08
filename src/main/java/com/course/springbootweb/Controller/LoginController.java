@@ -34,6 +34,10 @@ public class LoginController {
     @GetMapping ("/user/signOut")
     public String signOut(HttpSession session){
         session.removeAttribute("loginUser");
-        return "index";
+        return "redirect:/index.html";
+    }
+    @GetMapping("/moban")
+    public String moban(){
+        return "/moban";
     }
 }

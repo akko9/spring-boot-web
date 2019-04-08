@@ -1,6 +1,7 @@
 package com.course.springbootweb.service;
 
 import com.course.springbootweb.Entity.Student;
+import com.course.springbootweb.Entity.User;
 import com.course.springbootweb.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,26 @@ public class StudentService {
      */
     public void delete(Student student){
         studentRepository.delete(student);
+    }
+    /*
+    根据用户查询student
+     */
+    public Student findByUId(User user){
+        Student student=studentRepository.findByUser(user);
+        return  student;
+    }
+    /*
+    根据lesson1 统计
+     */
+    public Integer countOne(String lessonOne){
+         Integer countOne=studentRepository.countByLessonOne(lessonOne);
+         return countOne;
+    }
+    /*
+    根据lesson2统计
+     */
+    public Integer countTwo(String lessonTwo){
+        Integer countTwo=studentRepository.countByLessonTwo(lessonTwo);
+        return countTwo;
     }
 }

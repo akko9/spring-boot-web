@@ -52,4 +52,10 @@ public class UserController {
         userService.delete(user);
         return "redirect:/users";
     }
+    @ResponseBody
+    @GetMapping("getUserById/{id}")
+    public User findUser(@PathVariable("id") Integer id){
+        User user= userService.findById(id);
+        return user;
+    }
 }

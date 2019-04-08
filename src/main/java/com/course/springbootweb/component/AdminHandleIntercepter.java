@@ -12,7 +12,6 @@ public class AdminHandleIntercepter implements HandlerInterceptor {
 
         Integer.parseInt(isAdmin.toString());
         if (isAdmin.equals(1)){
-            System.out.println("通过");
             request.setAttribute("msg","未有权限浏览!");
             request.getRequestDispatcher("/main.html").forward(request,response);
             return  false;

@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- Bootstrap core CSS -->
+    <link  th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css }" rel="stylesheet" >
+    <link  th:href="@{css/dashboard.css}" rel="stylesheet">
 </head>
 <body>
 <!--头部-->
@@ -66,7 +70,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" th:href="@{CourseC}" th:class="${activeurl=='courseC'?'nav-link active':'nav-link'}">
                     <span data-feather="file-text"></span>
                      学生选课
                 </a>

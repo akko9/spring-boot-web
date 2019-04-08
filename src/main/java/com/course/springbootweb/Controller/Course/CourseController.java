@@ -7,6 +7,7 @@ import com.course.springbootweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class CourseController  {
     public List<Course> list(@PathVariable("uid") Integer id){
         User user=userService.findById(id);
         Integer  isAdmin=user.getIsadmin();
+        System.out.println("管理权限为"+isAdmin);
         if (isAdmin==0){
             List<Course> list=courseService.findAll();
             return list;
@@ -53,4 +55,6 @@ public class CourseController  {
         courseService.delete(course);
         return "redirect:/courses";
     }
+
+
 }
